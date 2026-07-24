@@ -1,1 +1,0 @@
-High-resolution site images are stored in this directory.
