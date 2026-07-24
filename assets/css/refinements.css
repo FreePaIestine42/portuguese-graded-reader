@@ -1,0 +1,131 @@
+/* Targeted proportion and library-banner refinements. */
+
+.page-home .hero {
+  min-height: 340px;
+  grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+}
+
+.page-home .hero-copy {
+  padding: 30px 34px 28px;
+}
+
+.page-home .hero-kicker {
+  margin-bottom: 9px;
+  font-size: 0.7rem;
+}
+
+.page-home .hero-copy h1 {
+  margin-bottom: 10px;
+  font-size: clamp(2.25rem, 3.6vw, 3.55rem);
+  line-height: 1;
+}
+
+.page-home .hero-text {
+  max-width: 55ch;
+  font-size: 1rem;
+  line-height: 1.42;
+}
+
+.page-home .hero-journey {
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.page-home .hero-journey div {
+  min-height: 70px;
+  padding: 9px 10px;
+  border-radius: 12px;
+}
+
+.page-home .hero-journey span {
+  width: 22px;
+  height: 22px;
+  margin-bottom: 5px;
+  font-size: 0.68rem;
+}
+
+.page-home .hero-journey strong {
+  margin-bottom: 1px;
+  font-size: 0.86rem;
+}
+
+.page-home .hero-journey small {
+  font-size: 0.73rem;
+  line-height: 1.2;
+}
+
+.page-home .hero-start-button {
+  margin-top: 15px;
+  padding: 9px 15px;
+}
+
+.page-home .hero-media,
+.page-home .hero-media img {
+  min-height: 340px;
+}
+
+.page-home .hero-media img {
+  transform: scale(1.07);
+}
+
+.page-library .library-banner {
+  align-items: center;
+}
+
+.page-library .page-banner-badge {
+  align-self: center;
+  width: 82px;
+  min-width: 82px;
+  height: 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 12px 26px rgba(35, 40, 45, 0.14);
+  font-size: 1.65rem;
+  line-height: 1;
+}
+
+.page-library .page-banner-badge::before {
+  content: "Level";
+  font-size: 0.58rem;
+  font-weight: 850;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.page-library.level-a2 .page-banner-badge {
+  color: #a43b40;
+}
+
+.page-library.level-b1 .page-banner-badge {
+  color: #2d6046;
+}
+
+.page-library.level-b2 .page-banner-badge {
+  color: #6d651c;
+}
+
+@media (max-width: 1080px) {
+  .page-home .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .page-home .hero-media,
+  .page-home .hero-media img {
+    min-height: 280px;
+  }
+
+  .page-library .library-banner {
+    align-items: flex-start;
+  }
+
+  .page-library .page-banner-badge {
+    align-self: flex-start;
+  }
+}
