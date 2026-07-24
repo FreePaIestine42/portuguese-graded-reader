@@ -66,12 +66,9 @@
         <button class="level-toggle ${isExpanded ? 'open' : ''}" type="button" data-level-toggle="${level.id}" aria-expanded="${isExpanded}">
           <span class="level-toggle-main">
             <span class="level-chip">${level.id}</span>
-            <span>
-              <span class="level-name">${level.id}</span>
-              <span class="level-subtitle">${level.label}</span>
-            </span>
+            <span class="level-label">${level.label}</span>
           </span>
-          <span class="level-arrow">▾</span>
+          <span class="level-arrow" aria-hidden="true">⌄</span>
         </button>
         <div class="level-panel ${isExpanded ? 'open' : ''}">
           ${categoryLinks}
@@ -86,6 +83,7 @@
     overlay.hidden = false;
     overlay.classList.add('visible');
     menuToggle.setAttribute('aria-expanded', 'true');
+    menuToggle.setAttribute('aria-label', 'Close menu');
     sidebar.setAttribute('aria-hidden', 'false');
   }
 
@@ -95,6 +93,7 @@
     overlay.hidden = true;
     overlay.classList.remove('visible');
     menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Open menu');
     sidebar.setAttribute('aria-hidden', 'true');
   }
 
@@ -121,33 +120,40 @@
       <section class="page page-home">
         <div class="hero">
           <div class="hero-copy">
-            <span class="eyebrow">European Portuguese graded reader</span>
-            <h1>${data.siteName}</h1>
-            <p class="hero-text">A simple, clear place to read useful Portuguese, check unknown vocabulary, and practise your understanding afterwards.</p>
-            <div class="hero-callout">
-              <strong>How it works</strong>
-              <p>Choose your level, open a category, pick a story, read it, and then complete the exercises.</p>
+            <div class="hero-kicker">
+              <span class="hero-kicker-mark" aria-hidden="true"></span>
+              European Portuguese graded reader
             </div>
+            <h1>${data.siteName}</h1>
+            <p class="hero-text">Read useful, natural European Portuguese with vocabulary support and interactive comprehension practice.</p>
+            <div class="hero-journey" aria-label="How the website works">
+              <div><span>1</span><strong>Choose</strong><small>a level and category</small></div>
+              <div><span>2</span><strong>Read</strong><small>with vocabulary help</small></div>
+              <div><span>3</span><strong>Practise</strong><small>with varied exercises</small></div>
+            </div>
+            <a class="hero-start-button" href="#/library/A2/everyday">Browse stories</a>
           </div>
           <div class="hero-media">
             <img src="${data.homeHeroImage}" alt="Portuguese flag waving on a flagpole." />
+            <div class="hero-ribbon" aria-hidden="true"><span></span><span></span><span></span></div>
           </div>
         </div>
 
-        <section class="section-block">
+        <section class="section-block level-intro-section">
           <div class="section-heading">
-            <h2>Choose your level</h2>
-            <p>These are broad reading guides to help you get started.</p>
+            <span class="section-kicker">Find your starting point</span>
+            <h2>Choose your reading level</h2>
+            <p>A1, C1 and C2 are not included for now. These descriptions can help you choose between A2, B1 and B2.</p>
           </div>
           <div class="level-card-grid">
             ${data.levels.map(level => `
-              <article class="level-card prominent level-${level.id.toLowerCase()}">
-                <div>
+              <article class="level-card level-${level.id.toLowerCase()}">
+                <div class="level-card-heading">
                   <span class="level-card-top">${level.id}</span>
                   <h3>${level.label}</h3>
-                  <p>${data.levelBlurbs[level.id]}</p>
                 </div>
-                <a class="card-link-button" href="#/library/${level.id}/everyday">Open ${level.id}</a>
+                <p>${data.levelBlurbs[level.id]}</p>
+                <a class="card-link-button" href="#/library/${level.id}/everyday">Browse ${level.id} stories <span aria-hidden="true">→</span></a>
               </article>
             `).join('')}
           </div>
@@ -275,9 +281,17 @@
   function renderProgress() {
     return `
       <section class="page page-progress">
-        <div class="page-banner neutral">
+        <a class="progress-home-header" href="#/" aria-label="Return to the Portuguese Stories homepage">
+          <span class="progress-brand-flag" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="progress-brand-copy">
+            <strong>${data.siteName}</strong>
+            <small>Return to the homepage</small>
+          </span>
+          <span class="progress-home-arrow" aria-hidden="true">← Home</span>
+        </a>
+        <div class="page-banner progress-banner">
           <div>
-            <span class="eyebrow">Overview</span>
+            <span class="eyebrow">Your reading activity</span>
             <h1>My Progress</h1>
             <p>Progress saving is not active yet, but this page structure is ready.</p>
           </div>
