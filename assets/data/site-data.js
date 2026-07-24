@@ -1,11 +1,11 @@
 window.SITE_DATA = {
   siteName: 'Portuguese Stories',
-  tagline: 'Read. Understand. Practice natural European Portuguese.',
+  tagline: 'Read. Understand. Practise natural European Portuguese.',
   homeHeroImage: 'https://images.unsplash.com/photo-1735815813700-09c379f5261d?auto=format&fit=crop&fm=jpg&q=92&w=1800',
   levelBlurbs: {
-    A2: 'You can understand straightforward texts about daily life, familiar routines, and practical situations.',
-    B1: 'You can read connected texts about everyday situations, opinions, and experiences with growing independence.',
-    B2: 'You can read more detailed and nuanced texts, including news and more abstract ideas, with solid comprehension.'
+    A2: 'You can understand common words and expressions about everyday topics such as family, shopping, local places and work. You can read short, simple texts and find useful information in things like notices, menus, advertisements, schedules and brief personal messages. You can also handle routine conversations and describe your background, surroundings and immediate needs in simple terms.',
+    B1: 'You can understand the main points of clear language about familiar topics such as work, school, leisure and travel. You can read texts written mainly in common everyday or work-related language and follow descriptions of events, feelings and wishes. You can manage most situations while travelling, describe experiences, dreams and plans, and briefly explain your opinions.',
+    B2: 'You can understand the main ideas of more complex texts on both concrete and abstract topics. You can read articles and reports about current issues, understand different viewpoints and follow contemporary fiction with reasonable independence. You can communicate fairly fluently and spontaneously, discuss a wide range of subjects in detail and explain or defend your opinions.'
   },
   categories: [
     { id: 'everyday', name: 'Everyday Portuguese', icon: '☕' },
@@ -13,9 +13,9 @@ window.SITE_DATA = {
     { id: 'news', name: 'News', icon: '📰' }
   ],
   levels: [
-    { id: 'A2', name: 'A2', label: 'Elementary', color: '#7a2e32', softColor: '#f4d6d8' },
-    { id: 'B1', name: 'B1', label: 'Intermediate', color: '#0d5e56', softColor: '#d9efec' },
-    { id: 'B2', name: 'B2', label: 'Upper Intermediate', color: '#c07b2d', softColor: '#f8ead6' }
+    { id: 'A2', name: 'A2', label: 'Elementary', color: '#ED1D25', softColor: '#FDE4E5' },
+    { id: 'B1', name: 'B1', label: 'Intermediate', color: '#026035', softColor: '#DDEDE5' },
+    { id: 'B2', name: 'B2', label: 'Upper Intermediate', color: '#FFF203', softColor: '#FFFBD0' }
   ],
   storyLengthFilters: [
     { id: 'all', label: 'All lengths' },
