@@ -35,7 +35,6 @@
       <div class="sidebar-inner">
         <div class="sidebar-top">
           <a class="brand" href="#/">${data.siteName}</a>
-          <button class="sidebar-close" type="button" aria-label="Close menu">×</button>
         </div>
         <nav class="sidebar-nav">
           <a class="sidebar-link ${state.route.page === 'home' ? 'active' : ''}" href="#/">Home</a>
@@ -46,7 +45,6 @@
       </div>
     `;
 
-    sidebar.querySelector('.sidebar-close').addEventListener('click', closeMenu);
     sidebar.querySelectorAll('[data-level-toggle]').forEach(button => {
       button.addEventListener('click', () => {
         const levelId = button.getAttribute('data-level-toggle');
