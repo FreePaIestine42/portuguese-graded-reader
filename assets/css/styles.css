@@ -52,6 +52,9 @@ button, select { font: inherit; }
   background: transparent;
   box-shadow: none;
 }
+.menu-toggle[aria-expanded="true"] span {
+  background: #1d232b;
+}
 .menu-toggle[aria-expanded="true"] span:nth-child(1) {
   top: 26px;
   transform: rotate(45deg);
