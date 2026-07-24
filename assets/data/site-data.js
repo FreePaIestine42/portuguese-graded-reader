@@ -8,14 +8,14 @@ window.SITE_DATA = {
     B2: 'You can understand the main ideas of more complex texts on both concrete and abstract topics. You can read articles and reports about current issues, understand different viewpoints and follow contemporary fiction with reasonable independence. You can communicate fairly fluently and spontaneously, discuss a wide range of subjects in detail and explain or defend your opinions.'
   },
   categories: [
-    { id: 'everyday', name: 'Everyday Portuguese', icon: '☕' },
+    { id: 'everyday', name: 'Everyday & Casual', icon: '☕' },
     { id: 'formal', name: 'Formal & Professional', icon: '✉️' },
     { id: 'news', name: 'News', icon: '📰' }
   ],
   levels: [
-    { id: 'A2', name: 'A2', label: 'Elementary', color: '#ED1D25', softColor: '#FDE4E5' },
-    { id: 'B1', name: 'B1', label: 'Intermediate', color: '#026035', softColor: '#DDEDE5' },
-    { id: 'B2', name: 'B2', label: 'Upper Intermediate', color: '#FFF203', softColor: '#FFFBD0' }
+    { id: 'A2', name: 'A2', label: 'Elementary', color: '#D45257', softColor: '#F7DEDF' },
+    { id: 'B1', name: 'B1', label: 'Intermediate', color: '#397757', softColor: '#DFEBE4' },
+    { id: 'B2', name: 'B2', label: 'Upper Intermediate', color: '#DED153', softColor: '#F7F1C7' }
   ],
   storyLengthFilters: [
     { id: 'all', label: 'All lengths' },
