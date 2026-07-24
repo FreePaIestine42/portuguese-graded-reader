@@ -19,7 +19,7 @@
   function parseHash() {
     const hash = window.location.hash
       .replace(/^#/, '')
-      .replace(/^\/+/ , '')
+      .replace(/^\/+/, '')
       .replace(/\/+$/, '');
     if (!hash) return { page: 'home' };
 
@@ -120,10 +120,7 @@
       <section class="page page-home">
         <div class="hero">
           <div class="hero-copy">
-            <div class="hero-kicker">
-              <span class="hero-kicker-mark" aria-hidden="true"></span>
-              European Portuguese graded reader
-            </div>
+            <div class="hero-kicker">European Portuguese graded reader</div>
             <h1>${data.siteName}</h1>
             <p class="hero-text">Read useful, natural European Portuguese with vocabulary support and interactive comprehension practice.</p>
             <div class="hero-journey" aria-label="How the website works">
@@ -135,7 +132,6 @@
           </div>
           <div class="hero-media">
             <img src="${data.homeHeroImage}" alt="Portuguese flag waving on a flagpole." />
-            <div class="hero-ribbon" aria-hidden="true"><span></span><span></span><span></span></div>
           </div>
         </div>
 
@@ -173,20 +169,21 @@
 
     return `
       <section class="page page-library level-theme level-${level.id.toLowerCase()}">
-        <div class="page-banner">
+        <div class="page-banner library-banner">
           <div>
             <span class="eyebrow">${level.id} · ${level.label}</span>
             <h1>${category.name}</h1>
-            <p>Browse stories for this level and category.</p>
+            <p>Choose a story, read at your own pace, and practise what you understood afterwards.</p>
           </div>
           <div class="page-banner-badge">${level.id}</div>
         </div>
 
-        <section class="section-block compact">
+        <section class="section-block compact library-section">
           <div class="filter-row">
             <div>
+              <span class="section-kicker">Available reading</span>
               <h2>Story library</h2>
-              <p>Alphabetical order.</p>
+              <p>Stories are always shown in alphabetical order.</p>
             </div>
             <label class="filter-control">
               <span>Filter by word count</span>
@@ -282,7 +279,6 @@
     return `
       <section class="page page-progress">
         <a class="progress-home-header" href="#/" aria-label="Return to the Portuguese Stories homepage">
-          <span class="progress-brand-flag" aria-hidden="true"><i></i><i></i><i></i></span>
           <span class="progress-brand-copy">
             <strong>${data.siteName}</strong>
             <small>Return to the homepage</small>
