@@ -1,0 +1,5 @@
+/* Keep the hamburger and open-menu X button on the same requested charcoal colour. */
+.menu-toggle,
+.menu-toggle[aria-expanded="true"] {
+  background: #26323C;
+}
