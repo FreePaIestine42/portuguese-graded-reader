@@ -8,6 +8,17 @@
     'Escola Básica da Ladeira': 'The local public school attended by Leonor and Tiago.'
   };
 
+  const CHARACTER_INTROS = {
+    A2: 'Meet eight recurring characters of different ages, from school friends and working adults to a retired carpenter. Their profiles introduce the personalities, routines and relationships that may return across A2 stories.',
+    B1: 'Meet eight recurring adults with different jobs, responsibilities and personalities. Their friendships, family ties and working lives provide the cast for the B1 stories.',
+    B2: 'Meet eight recurring adults whose personal, family and professional lives create the cast for the B2 stories. Their profiles introduce the more layered situations and relationships that may develop across this level.'
+  };
+
+  const UNIVERSE_PARAGRAPHS = [
+    'All fictional stories on Portuguese Stories take place in Bairro da Ladeira, a fictional neighbourhood in Lisbon. It has older apartment buildings, local shops, a school, a café, a bakery, a park, a square, a pharmacy and a neighbourhood association.',
+    'The neighbourhood provides familiar settings for everyday life, work, family routines and local events. Recurring places help the stories feel connected while allowing each reading to stand on its own.'
+  ];
+
   let tooltip = null;
   let activePlace = null;
 
@@ -62,13 +73,16 @@
     if (tooltip) tooltip.hidden = true;
   }
 
-  function removeMapReferences() {
+  function updateSectionCopy(levelId) {
     const bannerText = document.querySelector('.page-characters .character-page-banner p');
-    if (!bannerText) return;
+    if (bannerText && CHARACTER_INTROS[levelId]) {
+      bannerText.textContent = CHARACTER_INTROS[levelId];
+    }
 
-    bannerText.textContent = bannerText.textContent
-      .replace(/\s*The map below shows[^.]*\./g, '')
-      .trim();
+    const universeParagraphs = document.querySelectorAll('.story-universe-copy p');
+    UNIVERSE_PARAGRAPHS.forEach((paragraph, index) => {
+      if (universeParagraphs[index]) universeParagraphs[index].textContent = paragraph;
+    });
   }
 
   function enhancePlaceLabels() {
@@ -97,12 +111,14 @@
   }
 
   function applyCharacterPagePolish() {
-    if (!/^#\/characters\/(A2|B1|B2)\/?$/i.test(window.location.hash)) {
+    const match = window.location.hash.match(/^#\/characters\/(A2|B1|B2)\/?$/i);
+    if (!match) {
       hideTooltip();
       return;
     }
 
-    removeMapReferences();
+    const levelId = match[1].toUpperCase();
+    updateSectionCopy(levelId);
     enhancePlaceLabels();
   }
 
