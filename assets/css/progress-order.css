@@ -1,0 +1,12 @@
+/* Display the progress summary cards in the requested order. */
+.progress-grid .stat-card:nth-child(1) {
+  order: 1;
+}
+
+.progress-grid .stat-card:nth-child(2) {
+  order: 3;
+}
+
+.progress-grid .stat-card:nth-child(3) {
+  order: 2;
+}
