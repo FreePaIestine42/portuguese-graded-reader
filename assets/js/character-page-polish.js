@@ -20,7 +20,7 @@
   };
 
   const CHARACTER_INTROS = {
-    A2: 'Meet eight recurring characters of different ages, from school friends and working adults to a retired carpenter. Their profiles introduce the personalities, routines and relationships that may return across A2 stories.',
+    A2: 'Meet eight recurring characters of different ages, with varied personalities, responsibilities and everyday routines. Their friendships, family ties and working lives provide the cast for the A2 stories.',
     B1: 'Meet eight recurring adults with different jobs, responsibilities and personalities. Their friendships, family ties and working lives provide the cast for the B1 stories.',
     B2: 'Meet eight recurring adults whose personal, family and professional lives create the cast for the B2 stories. Their profiles introduce the more layered situations and relationships that may develop across this level.'
   };
