@@ -15,7 +15,7 @@
   };
 
   const UNIVERSE_PARAGRAPHS = [
-    'All fictional stories on Portuguese Stories take place in Bairro da Ladeira, a fictional neighbourhood in Lisbon. It has older apartment buildings, local shops, a school, a café, a bakery, a park, a square, a pharmacy and a neighbourhood association.',
+    'All fictional stories on Portuguese Stories take place in Bairro da Ladeira, an imagined neighbourhood in Lisbon. It has older apartment buildings, local shops, a school, a café, a bakery, a park, a square, a pharmacy and a neighbourhood association.',
     'The neighbourhood provides familiar settings for everyday life, work, family routines and local events. Recurring places help the stories feel connected while allowing each reading to stand on its own.'
   ];
 
