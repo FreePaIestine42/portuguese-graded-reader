@@ -2,9 +2,9 @@
 
 @media (min-width: 1081px) {
   .page-home .hero {
-    height: clamp(420px, 51vh, 465px);
-    min-height: 420px;
-    max-height: 465px;
+    height: clamp(435px, 53vh, 485px);
+    min-height: 435px;
+    max-height: 485px;
     align-items: stretch;
   }
 
@@ -12,7 +12,7 @@
   .page-home .hero-media {
     height: 100%;
     min-height: 0;
-    max-height: 465px;
+    max-height: 485px;
     overflow: hidden;
   }
 
@@ -20,7 +20,7 @@
     width: 100%;
     height: 100%;
     min-height: 0;
-    max-height: 465px;
+    max-height: 485px;
     object-fit: cover;
     object-position: 50% 30%;
     transform: none;
