@@ -10,19 +10,13 @@
 
   const LEVEL_PLACE_DESCRIPTIONS = {
     A2: {
-      'Praça da Ladeira': 'A small central square with benches, trees, a kiosk, a children’s play area and a nearby bus stop. Quim spends time here regularly.',
-      'Café O Degrau': 'A simple neighbourhood café serving coffee, pastries, toast, sandwiches, soup and inexpensive daily meals. Quim is a regular customer.',
-      'Jardim do Alto': 'A modest uphill park with a playground, football area, exercise equipment, shaded benches and walking paths. Leonor and Tiago spend time here regularly.',
       'Padaria Flor da Ladeira': 'A small neighbourhood bakery that is busiest before work, around lunchtime and late in the afternoon. Paula works the morning shift here.',
       'Escola Básica da Ladeira': 'The local public school attended by Leonor and Tiago.'
     },
     B1: {
-      'Papelaria Horizonte': 'A stationery, photocopy, printing and parcel shop located near the school. Teresa owns it, Inês works here, and Nuno occasionally helps.'
+      'Papelaria Horizonte': 'A stationery, photocopy, printing and parcel shop located near the school. Teresa owns it, and Inês works here.'
     },
-    B2: {
-      'Café O Degrau': 'A simple neighbourhood café serving coffee, pastries, toast, sandwiches, soup and inexpensive daily meals. Manel is a regular customer.',
-      'Jardim do Alto': 'A modest uphill park with a playground, football area, exercise equipment, shaded benches and walking paths. Isabel spends time here regularly.'
-    }
+    B2: {}
   };
 
   const CHARACTER_INTROS = {
