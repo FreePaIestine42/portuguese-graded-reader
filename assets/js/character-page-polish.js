@@ -5,7 +5,7 @@
     'Jardim do Alto': 'A modest uphill park with a playground, football area, exercise equipment, shaded benches and walking paths.',
     'Padaria Flor da Ladeira': 'A small neighbourhood bakery that is busiest before work, around lunchtime and late in the afternoon.',
     'Papelaria Horizonte': 'A stationery, photocopy, printing and parcel shop located near the school.',
-    'Escola Básica da Ladeira': 'The local public school attended by Leonor and Tiago, including the middle-school years.'
+    'Escola Básica da Ladeira': 'The local public school attended by Leonor and Tiago.'
   };
 
   let tooltip = null;
