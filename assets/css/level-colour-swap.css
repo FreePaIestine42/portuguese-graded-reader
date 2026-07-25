@@ -1,0 +1,47 @@
+/* Swap only the level assignments. The existing colour values remain unchanged. */
+
+/* Sidebar level chips */
+.level-a2 .level-chip {
+  background: var(--level-green);
+}
+
+.level-b1 .level-chip {
+  background: var(--level-red);
+}
+
+/* Homepage level cards */
+.level-card.level-a2 {
+  --level-main: var(--level-green);
+  --level-text: #fff;
+  --button-bg: rgba(255,255,255,0.95);
+  --button-text: #22533d;
+}
+
+.level-card.level-b1 {
+  --level-main: var(--level-red);
+  --level-text: #fff;
+  --button-bg: rgba(255,255,255,0.95);
+  --button-text: #7f2f33;
+}
+
+/* Library and story pages, including banners, cards, borders and badges */
+.level-theme.level-a2 {
+  --level-main: var(--level-green);
+  --level-soft: var(--level-green-soft);
+  --level-text: #fff;
+}
+
+.level-theme.level-b1 {
+  --level-main: var(--level-red);
+  --level-soft: var(--level-red-soft);
+  --level-text: #fff;
+}
+
+/* Contrasting level cards inside library banners */
+.page-library.level-a2 .page-banner-badge {
+  color: #2d6046;
+}
+
+.page-library.level-b1 .page-banner-badge {
+  color: #a43b40;
+}
