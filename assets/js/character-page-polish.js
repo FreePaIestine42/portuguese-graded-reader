@@ -1,11 +1,28 @@
 (function () {
-  const PLACE_DESCRIPTIONS = {
+  const BASE_PLACE_DESCRIPTIONS = {
     'Praça da Ladeira': 'A small central square with benches, trees, a kiosk, a children’s play area and a nearby bus stop.',
     'Café O Degrau': 'A simple neighbourhood café serving coffee, pastries, toast, sandwiches, soup and inexpensive daily meals.',
     'Jardim do Alto': 'A modest uphill park with a playground, football area, exercise equipment, shaded benches and walking paths.',
     'Padaria Flor da Ladeira': 'A small neighbourhood bakery that is busiest before work, around lunchtime and late in the afternoon.',
     'Papelaria Horizonte': 'A stationery, photocopy, printing and parcel shop located near the school.',
-    'Escola Básica da Ladeira': 'The local public school attended by Leonor and Tiago.'
+    'Escola Básica da Ladeira': 'The local public school.'
+  };
+
+  const LEVEL_PLACE_DESCRIPTIONS = {
+    A2: {
+      'Praça da Ladeira': 'A small central square with benches, trees, a kiosk, a children’s play area and a nearby bus stop. Quim spends time here regularly.',
+      'Café O Degrau': 'A simple neighbourhood café serving coffee, pastries, toast, sandwiches, soup and inexpensive daily meals. Quim is a regular customer.',
+      'Jardim do Alto': 'A modest uphill park with a playground, football area, exercise equipment, shaded benches and walking paths. Leonor and Tiago spend time here regularly.',
+      'Padaria Flor da Ladeira': 'A small neighbourhood bakery that is busiest before work, around lunchtime and late in the afternoon. Paula works the morning shift here.',
+      'Escola Básica da Ladeira': 'The local public school attended by Leonor and Tiago.'
+    },
+    B1: {
+      'Papelaria Horizonte': 'A stationery, photocopy, printing and parcel shop located near the school. Teresa owns it, Inês works here, and Nuno occasionally helps.'
+    },
+    B2: {
+      'Café O Degrau': 'A simple neighbourhood café serving coffee, pastries, toast, sandwiches, soup and inexpensive daily meals. Manel is a regular customer.',
+      'Jardim do Alto': 'A modest uphill park with a playground, football area, exercise equipment, shaded benches and walking paths. Isabel spends time here regularly.'
+    }
   };
 
   const CHARACTER_INTROS = {
@@ -85,16 +102,24 @@
     });
   }
 
-  function enhancePlaceLabels() {
-    document.querySelectorAll('.story-universe-places > div > span').forEach(place => {
-      const description = PLACE_DESCRIPTIONS[place.textContent.trim()];
-      if (!description || place.dataset.placeTooltipReady === 'true') return;
+  function getPlaceDescription(levelId, placeName) {
+    const levelDescriptions = LEVEL_PLACE_DESCRIPTIONS[levelId] || {};
+    return levelDescriptions[placeName] || BASE_PLACE_DESCRIPTIONS[placeName];
+  }
 
-      place.dataset.placeTooltipReady = 'true';
+  function enhancePlaceLabels(levelId) {
+    document.querySelectorAll('.story-universe-places > div > span').forEach(place => {
+      const placeName = place.textContent.trim();
+      const description = getPlaceDescription(levelId, placeName);
+      if (!description) return;
+
       place.dataset.placeDescription = description;
       place.classList.add('place-info-trigger');
       place.tabIndex = 0;
-      place.setAttribute('aria-label', `${place.textContent.trim()}: ${description}`);
+      place.setAttribute('aria-label', `${placeName}: ${description}`);
+
+      if (place.dataset.placeTooltipReady === 'true') return;
+      place.dataset.placeTooltipReady = 'true';
 
       place.addEventListener('mouseenter', () => showTooltip(place));
       place.addEventListener('mouseleave', () => hideTooltip(place));
@@ -119,7 +144,7 @@
 
     const levelId = match[1].toUpperCase();
     updateSectionCopy(levelId);
-    enhancePlaceLabels();
+    enhancePlaceLabels(levelId);
   }
 
   window.addEventListener('hashchange', () => {
