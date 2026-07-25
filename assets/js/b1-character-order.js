@@ -1,6 +1,6 @@
 (function () {
-  function moveB1BannerToTop() {
-    if (!/^#\/characters\/B1\/?$/i.test(window.location.hash)) return;
+  function moveCharacterBannerToTop() {
+    if (!/^#\/characters\/(A2|B1|B2)\/?$/i.test(window.location.hash)) return;
 
     const page = document.querySelector('.page-characters');
     const banner = page && page.querySelector('.character-page-banner');
@@ -12,8 +12,8 @@
   }
 
   window.addEventListener('hashchange', () => {
-    window.requestAnimationFrame(moveB1BannerToTop);
+    window.requestAnimationFrame(moveCharacterBannerToTop);
   });
 
-  window.requestAnimationFrame(moveB1BannerToTop);
+  window.requestAnimationFrame(moveCharacterBannerToTop);
 })();
