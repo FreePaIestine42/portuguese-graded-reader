@@ -13,8 +13,8 @@ window.SITE_DATA = {
     { id: 'news', name: 'News', icon: '📰' }
   ],
   levels: [
-    { id: 'A2', name: 'A2', label: 'Elementary', color: '#D45257', softColor: '#F7DEDF' },
-    { id: 'B1', name: 'B1', label: 'Intermediate', color: '#397757', softColor: '#DFEBE4' },
+    { id: 'A2', name: 'A2', label: 'Elementary', color: '#397757', softColor: '#DFEBE4' },
+    { id: 'B1', name: 'B1', label: 'Intermediate', color: '#D45257', softColor: '#F7DEDF' },
     { id: 'B2', name: 'B2', label: 'Upper Intermediate', color: '#DED153', softColor: '#F7F1C7' }
   ],
   storyLengthFilters: [
