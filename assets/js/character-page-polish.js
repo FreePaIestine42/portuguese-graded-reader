@@ -96,6 +96,26 @@
     });
   }
 
+  function sortCharacterCardsByAge(levelId) {
+    const grid = document.querySelector('.character-card-grid');
+    const characters = window.CHARACTER_DATA?.[levelId]?.characters;
+    if (!grid || !Array.isArray(characters)) return;
+
+    const ageByName = new Map(characters.map(character => [character.name, Number(character.age)]));
+    const cards = Array.from(grid.querySelectorAll('.character-card'));
+
+    cards.sort((firstCard, secondCard) => {
+      const firstName = firstCard.querySelector('h3')?.textContent.trim() || '';
+      const secondName = secondCard.querySelector('h3')?.textContent.trim() || '';
+      const firstAge = ageByName.get(firstName) ?? Number.POSITIVE_INFINITY;
+      const secondAge = ageByName.get(secondName) ?? Number.POSITIVE_INFINITY;
+
+      return firstAge - secondAge || firstName.localeCompare(secondName);
+    });
+
+    cards.forEach(card => grid.appendChild(card));
+  }
+
   function getPlaceDescription(levelId, placeName) {
     const levelDescriptions = LEVEL_PLACE_DESCRIPTIONS[levelId] || {};
     return levelDescriptions[placeName] || BASE_PLACE_DESCRIPTIONS[placeName];
@@ -138,6 +158,7 @@
 
     const levelId = match[1].toUpperCase();
     updateSectionCopy(levelId);
+    sortCharacterCardsByAge(levelId);
     enhancePlaceLabels(levelId);
   }
 
