@@ -1,5 +1,6 @@
 (function () {
   const data = window.SITE_DATA;
+  const characterData = window.CHARACTER_DATA || {};
   const state = {
     route: parseHash(),
     menuOpen: false,
@@ -21,10 +22,12 @@
       .replace(/^#/, '')
       .replace(/^\/+/, '')
       .replace(/\/+$/, '');
+
     if (!hash) return { page: 'home' };
 
     const [page, partA, partB] = hash.split('/');
     if (page === 'library') return { page, level: partA, category: partB };
+    if (page === 'characters') return { page, level: partA };
     if (page === 'story') return { page, id: partA };
     if (page === 'progress') return { page };
     return { page: 'home' };
@@ -57,9 +60,14 @@
   function renderSidebarLevel(level) {
     const isExpanded = state.expandedLevels[level.id];
     const categoryLinks = data.categories.map(category => {
-      const active = state.route.page === 'library' && state.route.level === level.id && state.route.category === category.id;
+      const active = state.route.page === 'library'
+        && state.route.level === level.id
+        && state.route.category === category.id;
+
       return `<a class="sidebar-sublink ${active ? 'active' : ''}" href="#/library/${level.id}/${category.id}">${category.name}</a>`;
     }).join('');
+
+    const charactersActive = state.route.page === 'characters' && state.route.level === level.id;
 
     return `
       <section class="sidebar-level level-${level.id.toLowerCase()}">
@@ -72,6 +80,7 @@
         </button>
         <div class="level-panel ${isExpanded ? 'open' : ''}">
           ${categoryLinks}
+          <a class="sidebar-sublink sidebar-character-link ${charactersActive ? 'active' : ''}" href="#/characters/${level.id}">Meet the characters</a>
         </div>
       </section>
     `;
@@ -107,6 +116,10 @@
 
   function getStory(storyId) {
     return data.stories.find(story => story.id === storyId);
+  }
+
+  function getCharacterSet(levelId) {
+    return characterData[levelId];
   }
 
   function storyLengthBucket(wordCount) {
@@ -163,7 +176,8 @@
     const category = getCategory(categoryId);
     if (!level || !category) return renderNotFound();
 
-    const stories = data.stories.filter(story => story.level === levelId && story.category === categoryId)
+    const stories = data.stories
+      .filter(story => story.level === levelId && story.category === categoryId)
       .filter(story => state.storyLengthFilter === 'all' || storyLengthBucket(story.wordCount) === state.storyLengthFilter)
       .sort((a, b) => a.title.localeCompare(b.title));
 
@@ -174,6 +188,10 @@
             <span class="eyebrow">${level.id} · ${level.label}</span>
             <h1>${category.name}</h1>
             <p>Choose a story, read at your own pace, and practise what you understood afterwards.</p>
+            <a class="characters-library-link" href="#/characters/${level.id}">
+              Meet the ${level.id} characters
+              <span aria-hidden="true">→</span>
+            </a>
           </div>
           <div class="page-banner-badge">${level.id}</div>
         </div>
@@ -198,6 +216,98 @@
               ${stories.map(story => renderStoryCard(story, level)).join('')}
             </div>
           ` : `<div class="empty-state">No stories match the selected filter yet.</div>`}
+        </section>
+      </section>
+    `;
+  }
+
+  function renderRelationshipGroup(group, index) {
+    return `
+      <article class="relationship-group">
+        <div class="relationship-group-heading">
+          <span>${String(index + 1).padStart(2, '0')}</span>
+          <h3>${group.title}</h3>
+        </div>
+        <div class="relationship-lines">
+          ${group.relationships.map(relationship => `
+            <div class="relationship-row">
+              <span class="relationship-person">${relationship.left}</span>
+              <span class="relationship-link"><span>${relationship.label}</span></span>
+              <span class="relationship-person">${relationship.right}</span>
+            </div>
+          `).join('')}
+        </div>
+      </article>
+    `;
+  }
+
+  function renderCharacterCard(character) {
+    return `
+      <article class="character-card">
+        <div class="character-card-heading">
+          <span class="character-initials" aria-hidden="true">${character.initials}</span>
+          <div>
+            <h3>${character.name}</h3>
+            <p>Age ${character.age} · ${character.role}</p>
+          </div>
+        </div>
+        <p class="character-description">${character.description}</p>
+        <div class="character-connections">
+          <strong>Established connections</strong>
+          <span>${character.connections}</span>
+        </div>
+      </article>
+    `;
+  }
+
+  function renderCharacters(levelId) {
+    const level = getLevel(levelId);
+    const characterSet = getCharacterSet(levelId);
+    if (!level || !characterSet) return renderNotFound();
+
+    return `
+      <section class="page page-characters level-theme level-${level.id.toLowerCase()}">
+        <div class="page-banner character-page-banner">
+          <div>
+            <span class="eyebrow">${level.id} · ${level.label}</span>
+            <h1>Meet the ${level.id} characters</h1>
+            <p>${characterSet.intro}</p>
+            <a class="character-banner-link" href="#/library/${level.id}/everyday">
+              Browse ${level.id} stories
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div class="page-banner-badge">${level.id}</div>
+        </div>
+
+        <section class="section-block relationship-map-section">
+          <div class="character-section-heading">
+            <div>
+              <span class="section-kicker">Who knows whom</span>
+              <h2>Relationship map</h2>
+            </div>
+            <p>Only relationships established in the character guide are shown.</p>
+          </div>
+
+          <div class="relationship-map-grid">
+            ${characterSet.mapGroups.map(renderRelationshipGroup).join('')}
+          </div>
+
+          <p class="relationship-map-note">${characterSet.mapNote}</p>
+        </section>
+
+        <section class="section-block character-list-section">
+          <div class="character-section-heading">
+            <div>
+              <span class="section-kicker">The recurring cast</span>
+              <h2>Character profiles</h2>
+            </div>
+            <p>Eight ordinary people with different ages, routines, jobs and personalities.</p>
+          </div>
+
+          <div class="character-card-grid">
+            ${characterSet.characters.map(renderCharacterCard).join('')}
+          </div>
         </section>
       </section>
     `;
@@ -229,6 +339,7 @@
   function renderStoryPage(storyId) {
     const story = getStory(storyId);
     if (!story) return renderNotFound();
+
     const level = getLevel(story.level);
     const category = getCategory(story.category);
 
@@ -294,8 +405,8 @@
         </div>
         <div class="progress-grid">
           <article class="stat-card"><strong>0</strong><span>Stories completed</span></article>
-          <article class="stat-card"><strong>0</strong><span>Total words read</span></article>
           <article class="stat-card"><strong>0</strong><span>Stories started</span></article>
+          <article class="stat-card"><strong>0</strong><span>Total words read</span></article>
         </div>
       </section>
     `;
@@ -315,12 +426,19 @@
 
   function renderRoute() {
     state.route = parseHash();
+
+    if (state.route.page === 'characters' && state.route.level) {
+      state.expandedLevels[state.route.level] = true;
+    }
+
     buildSidebar();
 
     if (state.route.page === 'home') {
       app.innerHTML = renderHome();
     } else if (state.route.page === 'library') {
       app.innerHTML = renderLibrary(state.route.level, state.route.category);
+    } else if (state.route.page === 'characters') {
+      app.innerHTML = renderCharacters(state.route.level);
     } else if (state.route.page === 'story') {
       app.innerHTML = renderStoryPage(state.route.id);
     } else if (state.route.page === 'progress') {
