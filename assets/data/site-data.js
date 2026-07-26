@@ -61,18 +61,26 @@ window.SITE_DATA = {
       paragraphs: ['Placeholder content.']
     },
     {
-      id: 'b2-noticia-cidade',
-      title: 'Mudanças na Cidade',
+      id: 'b2-o-que-ficou-por-dizer',
+      title: 'O que ficou por dizer',
       level: 'B2',
-      category: 'news',
-      wordCount: 1340,
-      totalTime: '31 min',
-      status: 'Completed',
-      image: 'https://images.pexels.com/photos/6148830/pexels-photo-6148830.jpeg?auto=compress&cs=tinysrgb&w=1800',
-      imageAlt: 'Fruit displayed in baskets at a market.',
-      summary: 'Placeholder news card.',
-      instructions: 'Leia primeiro o texto e depois faça os exercícios.',
-      paragraphs: ['Placeholder content.']
+      category: 'everyday',
+      wordCount: 1229,
+      totalTime: '36 min',
+      status: 'Not started',
+      image: './assets/images/o-que-ficou-por-dizer-card.svg',
+      imageAlt: 'An elderly yellow Labrador looking towards the camera.',
+      summary: 'Daniela protects her professional boundaries while questioning the conflict she constructed from a client’s silence.',
+      instructions: 'Leia primeiro a história, consulte o apoio de vocabulário quando necessário e complete depois as atividades de compreensão.',
+      characters: ['Daniela Pires', 'Sofia Tavares', 'Leonor Martins', 'Nori', 'Baltazar'],
+      characterIds: ['daniela-pires', 'sofia-tavares', 'leonor-martins', 'nori', 'baltazar'],
+      locations: ['Bairro da Ladeira', 'Praça da Ladeira'],
+      topics: ['pet sitting', 'professional boundaries', 'miscommunication', 'assumptions', 'friendship'],
+      dialogue: true,
+      pointOfView: 'first person',
+      languageVariant: 'European Portuguese',
+      vocabularyTheme: 'Work boundaries, interpretation and interpersonal tension',
+      paragraphs: []
     }
   ]
 };
