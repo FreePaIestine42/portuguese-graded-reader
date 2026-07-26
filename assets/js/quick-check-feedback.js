@@ -1,5 +1,61 @@
 (function () {
+  const STORIES = window.STORY_CONTENT?.stories || {};
   const STATE_CLASSES = ['is-correct', 'is-incorrect', 'is-unanswered'];
+
+  function currentStory() {
+    const match = window.location.hash.match(/^#\/story\/([^/]+)\/?$/);
+    return match ? STORIES[match[1]] : null;
+  }
+
+  function findCheck(box) {
+    const story = currentStory();
+    const checkId = box?.dataset.readingCheck;
+    if (!story || !checkId) return null;
+
+    return story.sections
+      .map(section => section.check)
+      .find(check => check?.id === checkId) || null;
+  }
+
+  function cleanExplanation(value) {
+    return String(value || '')
+      .replace(/^\s*(?:Correto|Ainda não|Falso|Verdadeiro|Resposta correta|Resposta incorreta)\.\s*/i, '')
+      .trim();
+  }
+
+  function feedbackText(check, answer, state) {
+    if (state === 'unanswered') {
+      return 'Escolhe uma resposta antes de verificar.';
+    }
+
+    const explanation = cleanExplanation(check?.explanation);
+
+    if (check?.type === 'truefalse') {
+      const statementResult = check.answer === 'true'
+        ? 'A afirmação é verdadeira.'
+        : 'A afirmação é falsa.';
+
+      if (state === 'correct') {
+        return explanation
+          ? `${statementResult} ${explanation}`
+          : statementResult;
+      }
+
+      return explanation
+        ? `Resposta incorreta. ${statementResult} ${explanation}`
+        : `Resposta incorreta. ${statementResult}`;
+    }
+
+    if (state === 'correct') {
+      return explanation
+        ? `Resposta correta. ${explanation}`
+        : 'Resposta correta.';
+    }
+
+    return explanation
+      ? `Resposta incorreta. ${explanation}`
+      : 'Resposta incorreta. Revê esta parte da história e tenta novamente.';
+  }
 
   function removeState(box) {
     box.classList.remove(...STATE_CLASSES);
@@ -11,9 +67,9 @@
     if (!state) return;
 
     const labels = {
-      correct: '✓ Correct',
-      incorrect: '✕ Try again',
-      unanswered: 'Choose an answer'
+      correct: '✓ Resposta correta',
+      incorrect: '✕ Resposta incorreta',
+      unanswered: 'Escolhe uma resposta'
     };
 
     box.classList.add(`is-${state}`);
@@ -32,14 +88,19 @@
     const feedback = box.querySelector('.activity-feedback');
     if (!feedback) return;
 
+    const answer = box.querySelector('input:checked')?.value || '';
+    const check = findCheck(box);
+
     if (feedback.classList.contains('is-correct')) {
+      feedback.textContent = feedbackText(check, answer, 'correct');
       setState(box, 'correct');
       return;
     }
 
     if (feedback.classList.contains('is-incorrect') && feedback.textContent.trim()) {
-      const hasAnswer = Boolean(box.querySelector('input:checked'));
-      setState(box, hasAnswer ? 'incorrect' : 'unanswered');
+      const state = answer ? 'incorrect' : 'unanswered';
+      feedback.textContent = feedbackText(check, answer, state);
+      setState(box, state);
       return;
     }
 
