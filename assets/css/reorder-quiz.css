@@ -1,0 +1,136 @@
+/* A true reordering interface for chronology questions. */
+.reorder-exercise {
+  display: grid;
+  gap: 12px;
+}
+
+.reorder-instructions {
+  margin: 0;
+  color: #56616b;
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
+.reorder-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.reorder-item {
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 11px;
+  min-height: 62px;
+  padding: 10px 11px;
+  border: 1px solid #d9d2c9;
+  border-radius: 13px;
+  background: #fff;
+  cursor: grab;
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.reorder-item:hover {
+  border-color: color-mix(in srgb, var(--level-main) 48%, #d9d2c9);
+  box-shadow: 0 5px 14px rgba(38, 50, 60, 0.07);
+}
+
+.reorder-item:active {
+  cursor: grabbing;
+}
+
+.reorder-item.is-dragging {
+  opacity: 0.48;
+  transform: scale(0.99);
+}
+
+.reorder-item.is-drop-target {
+  border-color: var(--level-main);
+  background: color-mix(in srgb, var(--level-main) 8%, #fff);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--level-main) 18%, transparent);
+}
+
+.reorder-position {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: var(--level-main);
+  color: var(--level-text);
+  font-weight: 900;
+}
+
+.reorder-copy {
+  color: #303b45;
+  line-height: 1.45;
+}
+
+.reorder-controls {
+  display: flex;
+  gap: 5px;
+}
+
+.reorder-control {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 1px solid #d6cfc6;
+  border-radius: 9px;
+  background: #f9f7f3;
+  color: #34404a;
+  font-size: 1rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.reorder-control:hover:not(:disabled),
+.reorder-control:focus-visible {
+  border-color: var(--level-main);
+  background: color-mix(in srgb, var(--level-main) 10%, #fff);
+  outline: none;
+}
+
+.reorder-control:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.reorder-status {
+  min-height: 1.3em;
+  margin: 0;
+  color: #56616b;
+  font-size: 0.78rem;
+}
+
+.quiz-question.is-correct .reorder-item {
+  border-color: #78a68a;
+  background: #f7fbf8;
+}
+
+.quiz-question.is-incorrect .reorder-item {
+  border-color: #d49a9e;
+  background: #fffafa;
+}
+
+@media (max-width: 620px) {
+  .reorder-item {
+    grid-template-columns: 34px minmax(0, 1fr);
+  }
+
+  .reorder-controls {
+    grid-column: 2;
+    justify-content: flex-end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reorder-item {
+    transition: none;
+  }
+}
