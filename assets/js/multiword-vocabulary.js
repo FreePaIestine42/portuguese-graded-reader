@@ -21,6 +21,7 @@
 
   function phraseEntries(story) {
     return Object.entries(story?.vocabulary || {})
+      .filter(([, entry]) => entry.isMeaningDependentPhrase === true)
       .flatMap(([key, entry]) => (entry.phraseForms || []).map(phrase => ({ key, entry, phrase })))
       .sort((first, second) => second.phrase.length - first.phrase.length);
   }
