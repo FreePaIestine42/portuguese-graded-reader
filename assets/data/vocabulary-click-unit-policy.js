@@ -44,9 +44,9 @@
     prideOneself.baseForm = 'orgulhar-se';
     prideOneself.wordClass = 'pronominal verb';
     prideOneself.contextualMeaning = 'Daniela valorizava a sua capacidade de compreender as pessoas.';
-    prideOneself.example = 'A atleta se orgulhava de nunca faltar aos treinos.';
+    prideOneself.example = 'A atleta dizia que se orgulhava de nunca faltar aos treinos.';
     prideOneself.examplesByForm = {
-      'orgulhava': 'A atleta se orgulhava de nunca faltar aos treinos.'
+      'orgulhava': 'A atleta dizia que se orgulhava de nunca faltar aos treinos.'
     };
   }
 })();
