@@ -1,0 +1,42 @@
+/* Optional read-aloud challenge shown only on B1 and B2 story pages. */
+.read-aloud-suggestion {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin: 0 0 28px;
+  padding: 16px 18px;
+  border: 1px solid color-mix(in srgb, var(--level-main) 32%, #d9d2c8);
+  border-radius: 15px;
+  background: color-mix(in srgb, var(--level-main) 8%, #fff);
+}
+
+.read-aloud-suggestion-icon {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: var(--level-main);
+  color: var(--level-text);
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.read-aloud-suggestion-copy {
+  min-width: 0;
+}
+
+.read-aloud-suggestion-copy strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #28333d;
+  font-size: 0.92rem;
+}
+
+.read-aloud-suggestion-copy p {
+  margin: 0 !important;
+  color: #4a5660;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
