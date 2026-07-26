@@ -52,14 +52,6 @@
       return formExample;
     }
 
-    if (
-      entry?.example &&
-      usesExactForm(entry.example, displayedWord) &&
-      !isSameSentence(entry.example, storySentence)
-    ) {
-      return entry.example;
-    }
-
     return '';
   }
 
