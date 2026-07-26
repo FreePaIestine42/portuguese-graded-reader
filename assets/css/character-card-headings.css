@@ -1,0 +1,26 @@
+/* Put each character's name, age and role inside one level-coloured heading block. */
+.character-card-heading {
+  display: block;
+  margin-bottom: 14px;
+  padding: 14px 16px;
+  border: 1px solid color-mix(in srgb, var(--level-main) 28%, #ded7cd);
+  border-radius: 15px;
+  background: color-mix(in srgb, var(--level-main) 18%, #fff);
+}
+
+.character-card-heading .character-initials {
+  display: none;
+}
+
+.character-card-heading > div {
+  min-width: 0;
+}
+
+.character-card-heading h3 {
+  color: #25303a;
+}
+
+.character-card-heading p {
+  color: #46515b;
+  font-weight: 720;
+}
