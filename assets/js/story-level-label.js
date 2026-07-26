@@ -7,7 +7,10 @@
     const story = match ? stories[match[1]] : null;
     const label = document.querySelector('.page-story .reading-introduction .section-kicker');
 
-    if (story && label) label.textContent = `${story.level} reading`;
+    if (!story || !label) return;
+
+    const expectedLabel = `${story.level} reading`;
+    if (label.textContent !== expectedLabel) label.textContent = expectedLabel;
   }
 
   const observer = new MutationObserver(() => window.requestAnimationFrame(updateLabel));
