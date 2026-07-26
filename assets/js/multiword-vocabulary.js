@@ -1,6 +1,7 @@
 (function () {
   const STORIES = window.STORY_CONTENT?.stories || {};
   const APP = document.getElementById('app');
+  const DETACHED_CLITIC_PATTERN = /(?:^|\s)(?:me|te|se|nos|vos|lhe|lhes)(?=\s|$)/iu;
 
   const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({
     '&': '&amp;',
@@ -19,10 +20,24 @@
     return String(value).replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
   }
 
+  function canRenderAsPhrase(entry, phrase) {
+    const sharedPolicy = window.VOCABULARY_CLICK_UNIT_POLICY;
+    if (sharedPolicy?.canRenderAsPhrase) {
+      return sharedPolicy.canRenderAsPhrase(entry, phrase);
+    }
+
+    return Boolean(
+      entry?.isMeaningDependentPhrase === true &&
+      phrase &&
+      !DETACHED_CLITIC_PATTERN.test(String(phrase).normalize('NFC'))
+    );
+  }
+
   function phraseEntries(story) {
     return Object.entries(story?.vocabulary || {})
-      .filter(([, entry]) => entry.isMeaningDependentPhrase === true)
-      .flatMap(([key, entry]) => (entry.phraseForms || []).map(phrase => ({ key, entry, phrase })))
+      .flatMap(([key, entry]) => (entry.phraseForms || [])
+        .filter(phrase => canRenderAsPhrase(entry, phrase))
+        .map(phrase => ({ key, entry, phrase })))
       .sort((first, second) => second.phrase.length - first.phrase.length);
   }
 
