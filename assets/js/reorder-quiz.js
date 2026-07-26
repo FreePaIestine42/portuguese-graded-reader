@@ -40,12 +40,6 @@
     }
   }
 
-  function announce(exercise, row) {
-    const status = exercise.querySelector('.reorder-status');
-    const position = [...exercise.querySelectorAll('.reorder-item')].indexOf(row) + 1;
-    if (status) status.textContent = `O acontecimento está agora na posição ${position}.`;
-  }
-
   function moveRow(row, direction) {
     const list = row.closest('.reorder-list');
     const exercise = row.closest('.reorder-exercise');
@@ -60,7 +54,6 @@
     }
 
     syncHiddenAnswers(exercise, true);
-    announce(exercise, row);
     row.querySelector(direction === 'up' ? '[data-move-up]' : '[data-move-down]')?.focus();
   }
 
@@ -94,7 +87,6 @@
       <p class="reorder-instructions">Arrasta os cartões para os ordenar. Também podes usar as setas para mover cada acontecimento para cima ou para baixo.</p>
       <ol class="reorder-list" aria-label="Acontecimentos para ordenar"></ol>
       <div class="reorder-hidden-inputs" hidden></div>
-      <p class="reorder-status" aria-live="polite"></p>
     `;
 
     const list = exercise.querySelector('.reorder-list');
@@ -145,7 +137,6 @@
         list.insertBefore(draggedItem, placeAfter ? row.nextElementSibling : row);
         clearDropTargets(list);
         syncHiddenAnswers(exercise, true);
-        announce(exercise, draggedItem);
       });
 
       list.append(row);
@@ -165,7 +156,6 @@
       event.preventDefault();
       list.append(draggedItem);
       syncHiddenAnswers(exercise, true);
-      announce(exercise, draggedItem);
     });
 
     grid.replaceWith(exercise);
