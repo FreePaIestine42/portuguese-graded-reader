@@ -25,35 +25,26 @@ window.SITE_DATA = {
   ],
   stories: [
     {
-      id: 'a2-mercado-bairro',
-      title: 'No Mercado do Bairro',
+      id: 'a2-o-pequeno-visitante',
+      title: 'O Pequeno Visitante',
       level: 'A2',
       category: 'everyday',
-      wordCount: 620,
-      totalTime: '18 min',
+      wordCount: 633,
+      totalTime: '24 min',
       status: 'Not started',
-      image: 'https://images.pexels.com/photos/6148830/pexels-photo-6148830.jpeg?auto=compress&cs=tinysrgb&w=1800',
-      imageAlt: 'Fruit displayed in baskets at a market.',
-      summary: 'A simple everyday story about shopping for fruit at a local market.',
-      instructions: 'First read the story, then complete the exercises.',
-      paragraphs: [
-        'Example placeholder text. This page is still part of the structural foundation only.',
-        'The real story, clickable vocabulary, and interactive questions will be added in the next stage.'
-      ]
-    },
-    {
-      id: 'a2-rotina-manha',
-      title: 'Uma Manhã Normal',
-      level: 'A2',
-      category: 'everyday',
-      wordCount: 540,
-      totalTime: '16 min',
-      status: 'Not started',
-      image: 'https://images.pexels.com/photos/6148830/pexels-photo-6148830.jpeg?auto=compress&cs=tinysrgb&w=1800',
-      imageAlt: 'Fruit displayed in baskets at a market.',
-      summary: 'Placeholder story card used to test the grid layout.',
-      instructions: 'First read the story, then complete the exercises.',
-      paragraphs: ['Placeholder content.']
+      image: './assets/images/o-pequeno-visitante-card.jpg',
+      imageAlt: 'A small brown lizard on a pale classroom floor.',
+      summary: 'Leonor and Tiago find a small lizard in their classroom and help it return safely outdoors.',
+      instructions: 'Read the story first, use the vocabulary panel when needed, and then complete the comprehension activities.',
+      characters: ['Leonor Batista', 'Tiago Matias', 'Professora Teresa'],
+      characterIds: ['leonor-batista', 'tiago-matias', 'professora-teresa'],
+      locations: ['Escola Básica da Ladeira', 'Jardim do Alto'],
+      topics: ['school', 'animals', 'kindness', 'helping'],
+      dialogue: true,
+      pointOfView: 'third person',
+      languageVariant: 'European Portuguese',
+      vocabularyTheme: 'School, animals and careful actions',
+      paragraphs: []
     },
     {
       id: 'b1-email-trabalho',
