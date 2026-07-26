@@ -6,6 +6,7 @@
   if (around) {
     around.forms = [];
     around.phraseForms = ['à volta do'];
+    around.isMeaningDependentPhrase = true;
     around.examplesByForm = {
       ...(around.examplesByForm || {}),
       'à volta do': 'Os ciclistas reuniram-se à volta do mapa antes da partida.'
@@ -16,6 +17,7 @@
   if (shrug) {
     shrug.forms = [];
     shrug.phraseForms = ['encolheu os ombros'];
+    shrug.isMeaningDependentPhrase = true;
     shrug.examplesByForm = {
       ...(shrug.examplesByForm || {}),
       'encolheu os ombros': 'Sem saber qual caminho escolher, o turista encolheu os ombros.'
