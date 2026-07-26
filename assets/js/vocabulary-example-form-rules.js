@@ -1,4 +1,6 @@
 (function () {
+  const stories = window.STORY_CONTENT?.stories || {};
+
   function normalize(value) {
     return String(value || '')
       .normalize('NFC')
@@ -15,36 +17,68 @@
     return Boolean(exactWord) && tokens(sentence).includes(exactWord);
   }
 
-  function sentenceContainingClickedWord(button) {
-    const paragraph = button.closest('.story-paragraph');
-    const paragraphText = paragraph?.textContent?.trim();
+  function currentStory() {
+    const match = window.location.hash.match(/^#\/story\/([^/]+)\/?$/);
+    return match ? stories[match[1]] : null;
+  }
+
+  function sourceSentence(button) {
+    const paragraphText = button.closest('.story-paragraph')?.textContent?.trim();
     const displayedWord = button.textContent.trim();
 
     if (!paragraphText || !displayedWord) return '';
 
     const sentences = paragraphText.match(/[^.!?]+(?:[.!?]+|$)/g) || [paragraphText];
-    const matchingSentence = sentences.find(sentence => usesExactForm(sentence, displayedWord));
-
-    return String(matchingSentence || paragraphText)
+    return String(sentences.find(sentence => usesExactForm(sentence, displayedWord)) || paragraphText)
       .replace(/^\s*—\s*/, '')
       .trim();
   }
 
-  function enforceExactExampleForm(button) {
-    const example = document.querySelector('#vocabulary-card .vocabulary-example p');
-    if (!example) return;
+  function isSameSentence(first, second) {
+    return normalize(first).replace(/[.!?]+$/g, '') === normalize(second).replace(/[.!?]+$/g, '');
+  }
+
+  function separateExample(entry, displayedWord, storySentence) {
+    const exactForm = normalize(displayedWord);
+    const formExamples = entry?.examplesByForm || {};
+    const formExample = Object.entries(formExamples)
+      .find(([form]) => normalize(form) === exactForm)?.[1];
+
+    if (
+      formExample &&
+      usesExactForm(formExample, displayedWord) &&
+      !isSameSentence(formExample, storySentence)
+    ) {
+      return formExample;
+    }
+
+    return '';
+  }
+
+  function updateExample(button) {
+    const story = currentStory();
+    const entry = story?.vocabulary?.[button.dataset.vocab];
+    const exampleBox = document.querySelector('#vocabulary-card .vocabulary-example');
+    const exampleText = exampleBox?.querySelector('p');
+
+    if (!entry || !exampleBox || !exampleText) return;
 
     const displayedWord = button.textContent.trim();
-    if (usesExactForm(example.textContent, displayedWord)) return;
+    const storySentence = sourceSentence(button);
+    const example = separateExample(entry, displayedWord, storySentence);
 
-    const storySentence = sentenceContainingClickedWord(button);
-    if (storySentence) example.textContent = storySentence;
+    if (!example) {
+      exampleBox.remove();
+      return;
+    }
+
+    exampleText.textContent = example;
   }
 
   document.addEventListener('click', event => {
     const button = event.target.closest('.vocab-word');
     if (!button) return;
 
-    queueMicrotask(() => enforceExactExampleForm(button));
+    queueMicrotask(() => updateExample(button));
   });
 })();
