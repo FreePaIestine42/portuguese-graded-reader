@@ -1,0 +1,4 @@
+/* Story photographs belong on library cards, not on reading pages. */
+.page-story .reader-image {
+  display: none !important;
+}
