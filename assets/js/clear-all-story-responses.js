@@ -26,6 +26,7 @@
       ...current,
       readingChecks: {},
       quizAnswers: {},
+      quizChecks: {},
       quizSubmitted: false,
       lastPoints: null,
       totalPoints: null,
