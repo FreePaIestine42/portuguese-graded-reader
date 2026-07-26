@@ -32,7 +32,7 @@ window.SITE_DATA = {
       wordCount: 633,
       totalTime: '24 min',
       status: 'Not started',
-      image: './assets/images/o-pequeno-visitante-card.jpg',
+      image: './assets/images/o-pequeno-visitante-card.svg',
       imageAlt: 'A small brown lizard on a pale classroom floor.',
       summary: 'Leonor and Tiago find a small lizard in their classroom and help it return safely outdoors.',
       instructions: 'Read the story first, use the vocabulary panel when needed, and then complete the comprehension activities.',
