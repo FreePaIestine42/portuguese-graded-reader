@@ -1,0 +1,73 @@
+/* Immediate feedback and progress for final quiz questions. */
+.quiz-question-check-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.quiz-check-button {
+  padding: 9px 14px;
+  border: 0;
+  border-radius: 11px;
+  background: var(--neutral-dark);
+  color: #fff;
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 830;
+  cursor: pointer;
+  transition: transform 0.14s ease, opacity 0.14s ease, background 0.14s ease;
+}
+
+.quiz-check-button:hover {
+  transform: translateY(-1px);
+}
+
+.quiz-check-button:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--level-main) 38%, transparent);
+  outline-offset: 2px;
+}
+
+.quiz-question.is-correct .quiz-check-button {
+  background: #2f6f4d;
+}
+
+.quiz-question.is-incorrect .quiz-check-button {
+  background: #a54248;
+}
+
+.quiz-question.is-partial .quiz-check-button {
+  background: #8a6a2f;
+}
+
+.quiz-question.is-missing .quiz-check-button {
+  background: #936f2d;
+}
+
+.quiz-question-feedback strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.quiz-actions-immediate {
+  justify-content: flex-start;
+}
+
+.quiz-progress-result.is-in-progress {
+  border-color: #c8c0b6;
+  background: #f8f6f2;
+}
+
+.quiz-progress-result.is-in-progress h3 {
+  font-size: 1.45rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz-check-button {
+    transition: none;
+  }
+
+  .quiz-check-button:hover {
+    transform: none;
+  }
+}
