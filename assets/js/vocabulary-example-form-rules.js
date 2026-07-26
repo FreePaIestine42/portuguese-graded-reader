@@ -12,9 +12,14 @@
     return normalize(value).match(/[\p{L}]+(?:-[\p{L}]+)*/gu) || [];
   }
 
+  function wordSequence(value) {
+    return tokens(value).join(' ');
+  }
+
   function usesExactForm(sentence, displayedWord) {
-    const exactWord = normalize(displayedWord);
-    return Boolean(exactWord) && tokens(sentence).includes(exactWord);
+    const sentenceWords = wordSequence(sentence);
+    const exactWords = wordSequence(displayedWord);
+    return Boolean(exactWords) && ` ${sentenceWords} `.includes(` ${exactWords} `);
   }
 
   function currentStory() {
